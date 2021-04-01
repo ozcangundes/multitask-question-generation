@@ -179,7 +179,6 @@ def main(args_file=None):
         train_dataset=train_dataset,
         eval_dataset=valid_dataset,
         data_collator=data_collator,
-        prediction_loss_only=True,
         label_smoothing=model_args.label_smoothing
     )
 
