@@ -170,7 +170,8 @@ def main(args_file=None):
     # Initialize data_collator
     data_collator = T2TDataCollator(
         tokenizer=tokenizer,
-        mode="training"    )
+        mode="training",
+        using_tpu=training_args.tpu_num_cores is not None)
     
     # Initialize our Trainer
     trainer = Trainer(

@@ -25,9 +25,9 @@ def trim_batch(
 # this is necessacry because the trainer directly passes this dict as arguments to the model
 # so make sure the keys match the parameter names of the forward method
 class T2TDataCollator():
-    def __init__(self, tokenizer,  mode='training'):
+    def __init__(self, tokenizer,  mode='training', using_tpu=False):
         self.tokenizer = tokenizer
-
+        self.using_tpu = using_tpu
         self.mode = mode
 
 
@@ -43,8 +43,10 @@ class T2TDataCollator():
 
         pad_token_id = self.tokenizer.pad_token_id
 
-        input_ids, attention_mask = trim_batch(input_ids, pad_token_id, attention_mask=attention_mask)
-        target_ids = trim_batch(target_ids, pad_token_id)
+        # don't trim on tpu, for some reason trimming leads to slower training on TPU
+        if not self.using_tpu:
+            input_ids, attention_mask = trim_batch(input_ids, pad_token_id, attention_mask=attention_mask)
+            target_ids = trim_batch(target_ids, pad_token_id)
         
 
         lm_labels = target_ids.clone()
