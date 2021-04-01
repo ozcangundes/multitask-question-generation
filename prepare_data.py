@@ -12,7 +12,7 @@ from typing import Dict, List, Optional
 import torch
 import pandas as pd
 
-from datasets import Dataset
+from nlp import Dataset
 from transformers import MT5Tokenizer, HfArgumentParser
 from process_data import generate_data
 
