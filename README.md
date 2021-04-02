@@ -8,7 +8,6 @@ Until that time, please visit the [Hugging Face 🤗 model card](https://hugging
 
 # Citation
 
-Please use this model education and research purposes only. You can find the citation below:
 ```
 @misc{turkishmultitaskQA,
     author = {Özcan Gündeş},
